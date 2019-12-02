@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>이상형 월드컵</title>
+</head>
+<body>
+<h1>★겨울 간식 최강자전★</h1>
+<hr>
+<br>
+<p>
+<h2 id = "h2" style = "color : blue">8강</h2>
+<div id = "div"></div>
+<img id = "img1" src = "이상형월드컵.png", width = "500" height = "300">
+<span id = "vs">VS</span>
+<img id = "img2" src = "월드컵시작.png" width = "500" height = "300">
+</p>
+
+<script>	
+	var files = ["boongeoppang.jpg",
+				"gaeranppang.jpg",
+				"goongoguma.jpg",
+				"gukhwappang.jpg",
+				"hoppang.jpg",
+				"hotteok.jpg",
+				"odaeng.jpg",
+				"takoyaki.jpg"]
+	var files4 = new Array(5);
+	var files2 = new Array(3);
+	var files1;
+	var randomNum8 = new Array();var randomNum4 = new Array();var randomNum2 = new Array();//랜덤숫자 배열
+	var numX; var numY;//랜덤 숫자
+	var i = 0;	var j = 0;	var k = 0; var l = 0; var m = 0;
+	var num8 = 5; var num4 = 3; var num2 = 2;
+
+	for(var sp = 0 ; sp < 8 ; sp++){
+		var chk = 1;
+		while(chk>=1)
+		{
+			numX = Math.floor(Math.random()*8);
+	
+			chk = 0;
+			for(var a = 0; a < randomNum8.length ; a++)
+			{
+				if(numX == randomNum8[a]) chk++;
+			}	
+		}
+		randomNum8[sp] = numX;
+	}
+
+	for(var sp = 0 ; sp < 4 ; sp++){
+		var chk = 1;
+		while(chk>=1)
+		{
+			numX = Math.floor(Math.random()*4);
+	
+			chk = 0;
+			for(var a = 0; a < randomNum4.length ; a++)
+			{
+				if(numX == randomNum4[a]) chk++;
+			}	
+		}
+		randomNum4[sp] = numX;
+	}
+
+	for(var sp = 0 ; sp < 2 ; sp++){
+		var chk = 1;
+		while(chk>=1)
+		{
+			numX = Math.floor(Math.random()*2);
+	
+			chk = 0;
+			for(var a = 0; a < randomNum2.length ; a++)
+			{
+				if(numX == randomNum2[a]) chk++;
+			}	
+		}
+		randomNum2[sp] = numX;
+	}
+
+	var img1  = document.getElementById("img1")
+	var img2  = document.getElementById("img2")
+	var h2  = document.getElementById("h2")
+	var div  = document.getElementById("div")
+	var vs  = document.getElementById("vs")
+	
+	img1.addEventListener("click", change1)
+	img2.addEventListener("click", change2)
+
+	function change1()
+	{
+		if(num8 != 0)
+		{
+			files4[j] = img1.src;
+			img1.src = files[randomNum8[i]];
+			img2.src = files[randomNum8[i+1]];
+		
+			i += 2;
+			j++;
+			num8--;
+
+			if(num8 == 0) 
+			{
+				h2.innerHTML = "4강 시작"
+				img1.src = "4강.png"
+				img2.src = "시작.png"
+			}
+
+		}
+		else if(num4 != 0)	 
+		{
+			h2.innerHTML = "4강"
+			files2[k] = img1.src;
+			img1.src = files4[randomNum4[l]+1];
+			img2.src = files4[randomNum4[l+1]+1];
+		
+			k += 1;
+			l += 2;
+			num4--;
+			
+			if(num4 == 0) 
+			{
+				h2.innerHTML = "결승전 시작"
+				img1.src = "결승전.png"
+				img2.src = "시작.png"
+			}
+		}
+		else if(num2 != 0)
+		{
+			h2.innerHTML = "결승"
+			files1 = img1.src;
+			img1.src = files2[randomNum2[m]+1];
+			img2.src = files2[randomNum2[m+1]+1];
+			
+			num2--;
+			
+			if(num2 == 0) 
+			{
+				img1.src = "승자.png"
+				img2.src = "결과.png"
+			}				
+		}
+		else
+		{
+		 	h2.innerHTML = "축하합니다"
+			h2.style.color = "red"
+			img1.src = files1
+			img2.src = "빈화면.png"
+			vs.innerHTML = ""
+		}
+	}	
+
+
+
+	function change2()
+	{
+		if(num8 != 0)
+		{
+			files4[j] = img2.src;
+			img1.src = files[randomNum8[i]];
+			img2.src = files[randomNum8[i+1]];
+			
+			i += 2;
+			j++;
+			num8--;
+
+			if(num8 == 0) 
+			{
+				h2.innerHTML = "4강 시작"
+				img1.src = "4강.png"
+				img2.src = "시작.png"
+			}
+
+		}
+		else if(num4 != 0)	 
+		{
+			h2.innerHTML = "4강"
+			files2[k] = img2.src;
+			img1.src = files4[randomNum4[l]+1];
+			img2.src = files4[randomNum4[l+1]+1];
+			
+			k += 1;
+			l += 2;
+			num4--;
+			if(num4 == 0) 
+			{
+				h2.innerHTML = "결승전 시작"
+				img1.src = "결승전.png"
+				img2.src = "시작.png"
+			}
+		}
+		else if(num2 != 0)
+		{
+			h2.innerHTML = "결승"
+			files1 = img2.src;
+			img1.src = files2[randomNum2[m]+1];
+			img2.src = files2[randomNum2[m+1]+1];
+			
+			num2--;
+			
+			if(num2 == 0) 
+			{
+				img1.src = "승자.png"
+				img2.src = "결과.png"
+			}				
+		}
+		else
+		{
+		 	h2.innerHTML = "축하합니다"
+			h2.style.color = "red"
+			img1.src = files1
+			img2.src = "빈화면.png"
+			vs.innerHTML = ""
+		}
+	}	
+
+</script>
+</body>
+</html>
